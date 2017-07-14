@@ -1,0 +1,22 @@
+<h1>Ajax 아작내기 1</h1>
+<p>ajax 기초편</p>
+<form data-remote="true">
+    <input type="text" name="body">
+    <input type="submit">
+</form>
+<% @comments.each do |c| %>
+    <%= c.body%>
+    <hr>
+<% end %>
+
+<script>
+    $("form").submit(function(e){
+        $.ajax({
+          method: "POST",
+          url: "/home/new",
+          data: { body: $("input[name=body]").val() }
+        }).done(function( msg ) {
+            // alert( "Data Saved: " + msg );
+        });
+    })
+</script>
